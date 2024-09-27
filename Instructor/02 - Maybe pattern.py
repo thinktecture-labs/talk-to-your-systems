@@ -11,10 +11,10 @@ import instructor
 # Instructor with Maybe pattern
 # --------------------------------------------------------------
 
-api_url="https://api.openai.com/v1/" #http://localhost:11434/v1
-MODEL = "gpt-4o-2024-08-06" # qwen2.5:7b-instruct-fp16
+api_url = "https://api.openai.com/v1/" #"http://localhost:11434/v1"
+MODEL = "gpt-4o-2024-08-06" #"qwen2.5:7b-instruct-fp16"
 
-client = instructor.from_openai(OpenAI(base_url=api_url))
+client = instructor.from_openai(OpenAI(base_url=api_url)) #, mode=instructor.Mode.JSON)
 
 
 class AvailabilityRequest(BaseModel):
