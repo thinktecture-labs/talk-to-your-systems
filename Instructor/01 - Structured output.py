@@ -1,3 +1,4 @@
+import json
 from typing import List, Optional
 import instructor
 from pydantic import BaseModel, Field
@@ -33,7 +34,4 @@ response = client.chat.completions.create(
     ],
 )
 
-print(response.personIds)
-print(response.numberOfConsecutiveDays)
-
-print(response)
+print(response.model_dump_json(indent=3))

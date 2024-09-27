@@ -71,14 +71,9 @@ response = client.chat.completions.create(
 )
 
 tool_call = response.choices[0].message.tool_calls[0]
-type(
-    tool_call
-)  # openai.types.chat.chat_completion_message_tool_call.ChatCompletionMessageToolCall
-
 function_args = json.loads(tool_call.function.arguments)
-type(function_args)  # dict
 
-print(function_args["lastName"])
+print(tool_call)
 print(function_args)
 
 

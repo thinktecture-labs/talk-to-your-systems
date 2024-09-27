@@ -28,8 +28,6 @@ response = client.chat.completions.create(
 )
 
 message = response.choices[0].message.content
-type(message)
-
 print(message)
 
 
@@ -60,11 +58,8 @@ response = client.chat.completions.create(
 )
 
 message = response.choices[0].message.content
-type(message)
 
 message_dict = json.loads(message)
-
-type(message_dict)
 message_dict.keys()
 
 message_dict["lastName"]

@@ -34,10 +34,7 @@ response = client.chat.completions.create(
 )
 
 message = response.choices[0].message.content
-type(message)
-
 message_json = json.loads(message)
-type(message_json)
 
 print(message_json)
 

@@ -1,17 +1,21 @@
+import json
 from typing import List, Optional
-import instructor
-from pydantic import BaseModel, Field
+
 from openai import OpenAI
-
 from prompts import extraction_system_message
+from pydantic import BaseModel, Field
 
+import instructor
 
 # --------------------------------------------------------------
 # Instructor with Maybe pattern
 # --------------------------------------------------------------
 
-client = instructor.from_openai(OpenAI())
-MODEL = "gpt-4o-2024-08-06"
+api_url="https://api.openai.com/v1/" #http://localhost:11434/v1
+MODEL = "gpt-4o-2024-08-06" # qwen2.5:7b-instruct-fp16
+
+client = instructor.from_openai(OpenAI(base_url=api_url))
+
 
 class AvailabilityRequest(BaseModel):
     personIds: List[int] = Field(description="List of person IDs to check availability for")
@@ -43,9 +47,4 @@ response = client.chat.completions.create(
     ],
 )
 
-print(response.error)
-print(response.message)
-print(response.result.personIds)
-print(response.result.numberOfConsecutiveDays)
-
-print(response)
+print(response.model_dump_json(indent=3))
