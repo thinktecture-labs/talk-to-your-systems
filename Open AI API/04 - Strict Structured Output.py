@@ -4,6 +4,7 @@ from pydantic import BaseModel, Field
 
 from prompts import extraction_system_message
 
+
 client = OpenAI()
 MODEL = "gpt-4o-2024-08-06"
 

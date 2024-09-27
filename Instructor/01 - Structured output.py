@@ -1,4 +1,3 @@
-import json
 from typing import List, Optional
 import instructor
 from pydantic import BaseModel, Field
@@ -13,6 +12,7 @@ from prompts import extraction_system_message
 
 client = instructor.from_openai(OpenAI())
 MODEL = "gpt-4o-2024-08-06"
+
 
 class AvailabilityRequest(BaseModel):
     personIds: List[int] = Field(description="List of person IDs to check availability for")

@@ -1,4 +1,3 @@
-import json
 from typing import List, Optional
 
 from openai import OpenAI
@@ -6,6 +5,7 @@ from prompts import extraction_system_message
 from pydantic import BaseModel, Field
 
 import instructor
+
 
 # --------------------------------------------------------------
 # Instructor with Maybe pattern

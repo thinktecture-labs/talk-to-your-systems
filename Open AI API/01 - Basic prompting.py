@@ -3,6 +3,7 @@ import json
 
 from prompts import extraction_system_message
 
+
 client = OpenAI()
 MODEL = "gpt-4o-2024-08-06"
 
@@ -31,6 +32,11 @@ message = response.choices[0].message.content
 print(message)
 
 
+
+
+
+
+
 # --------------------------------------------------------------
 # Structured output example via prompt engineering
 # --------------------------------------------------------------
@@ -41,9 +47,9 @@ messages = [
     {
         "role": "system",
         "content": extraction_system_message + """\n
-        Always response in the following JSON format: {"employeeId":"Employee ID from the employee list", "firstName": <firstName from employee list>, "lastName": <lastName from employee list>, "numberOfConsecutiveDays": <number of requested days from the query>}
-        Only output the JSON, no markdown markup.
-        """,
+            Always response in the following JSON format: {"employeeId":"Employee ID from the employee list", "firstName": <firstName from employee list>, "lastName": <lastName from employee list>, "numberOfConsecutiveDays": <number of requested days from the query>}
+            Only output the JSON, no markdown markup.
+            """,
     },
     {
         "role": "user",
@@ -83,9 +89,9 @@ messages = [
     {
         "role": "system",
         "content": extraction_system_message + """\n
-        Always response in the following JSON format: {"employeeId":"Employee ID from the employee list", "firstName": <firstName from employee list>, "lastName": <lastName from employee list>, "numberOfConsecutiveDays": <number of requested days from the query>}
-        Only output the JSON, no markdown markup.
-        """,
+            Always response in the following JSON format: {"employeeId":"Employee ID from the employee list", "firstName": <firstName from employee list>, "lastName": <lastName from employee list>, "numberOfConsecutiveDays": <number of requested days from the query>}
+            Only output the JSON, no markdown markup.
+            """,
     },
     {
         "role": "user",
