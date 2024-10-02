@@ -2,17 +2,20 @@ from typing import List, Optional
 import instructor
 from pydantic import BaseModel, Field
 from openai import OpenAI
+from rich.console import Console
 
 from prompts import extraction_system_message
+
+
+console = Console()
+
+client = instructor.from_openai(OpenAI())
+MODEL = "gpt-4o-2024-08-06"
 
 
 # --------------------------------------------------------------
 # Instructor structured output example
 # --------------------------------------------------------------
-
-client = instructor.from_openai(OpenAI())
-MODEL = "gpt-4o-2024-08-06"
-
 
 class AvailabilityRequest(BaseModel):
     personIds: List[int] = Field(description="List of person IDs to check availability for")
@@ -34,4 +37,25 @@ response = client.chat.completions.create(
     ],
 )
 
-print(response.model_dump_json(indent=3))
+console.print(response.model_dump_json(indent=3))
+
+
+
+# --------------------------------------------------------------
+# Streaming structured output example
+# --------------------------------------------------------------
+
+response_stream = client.chat.completions.create_partial(
+    model=MODEL,
+    response_model=AvailabilityRequest,
+    messages=[
+        {
+            "role": "system",
+            "content": extraction_system_message
+        },
+        {"role": "user", "content": query},
+    ],
+)
+
+for user in response_stream:
+    console.print(user)
