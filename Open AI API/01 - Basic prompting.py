@@ -1,4 +1,5 @@
-from openai import OpenAI
+#from openai import OpenAI
+from langfuse.openai import OpenAI
 import json
 
 from prompts import extraction_system_message
