@@ -1,6 +1,5 @@
 openai
 requests
-beautifulsoup4
 instructor
 langfuse
 rich
