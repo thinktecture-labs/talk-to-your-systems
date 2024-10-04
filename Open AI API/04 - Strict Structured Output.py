@@ -1,14 +1,17 @@
 from typing import List, Optional
 from openai import OpenAI
 from pydantic import BaseModel, Field
+from rich.console import Console
 
 from prompts import extraction_system_message
 
 
+console = Console()
+
 client = OpenAI()
 MODEL = "gpt-4o-2024-08-06"
 
-query = "When does our colleague CW have two days available for a 2 days workshop?"
+query = "When does our colleague SG have two days available for a 2 days workshop?"
 
 
 # --------------------------------------------------------------
@@ -62,7 +65,7 @@ def get_availability_request_json(query):
     return response.choices[0].message
 
 response = get_availability_request_json(query)
-response.model_dump()
+console.print(response.model_dump())
 
 
 # --------------------------------------------------------------
@@ -88,4 +91,4 @@ def get_availability_request_pydantic(query: str):
     return completion.choices[0].message.parsed
 
 response_pydantic = get_availability_request_pydantic(query)
-response_pydantic.model_dump()
+console.print(response_pydantic.model_dump())

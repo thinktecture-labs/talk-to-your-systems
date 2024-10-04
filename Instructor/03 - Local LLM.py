@@ -1,21 +1,22 @@
 from typing import List, Optional
+
 from openai import OpenAI
+from prompts import extraction_system_message
 from pydantic import BaseModel, Field
 from rich.console import Console
-import instructor
-from prompts import extraction_system_message
 
+import instructor
 
 console = Console()
 
-api_url = "https://api.openai.com/v1/"
-MODEL = "gpt-4o-2024-08-06"
+api_url = "http://localhost:11434/v1"
+MODEL = "qwen2.5:7b-instruct-q4_K_M"
 
-client = instructor.from_openai(OpenAI(base_url=api_url))
+client = instructor.from_openai(OpenAI(base_url=api_url), mode=instructor.Mode.JSON)
 
 
 # --------------------------------------------------------------
-# Instructor with Maybe pattern
+# Instructor with Maybe pattern & local LLM
 # --------------------------------------------------------------
 
 class AvailabilityRequest(BaseModel):
@@ -34,7 +35,7 @@ class MaybeAvailabilityRequest(BaseModel):
 
 
 query = "When does our colleague SG have two days available for a 2 days workshop?"
-query = "F U!"
+#query = "F U!"
 
 response = client.chat.completions.create(
     model=MODEL,
@@ -48,4 +49,4 @@ response = client.chat.completions.create(
     ],
 )
 
-print(response.model_dump_json(indent=3))
+console.print(response.model_dump_json(indent=3))

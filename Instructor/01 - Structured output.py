@@ -1,8 +1,8 @@
 from typing import List, Optional
-import instructor
-from pydantic import BaseModel, Field
 from openai import OpenAI
+from pydantic import BaseModel, Field
 from rich.console import Console
+import instructor
 
 from prompts import extraction_system_message
 
@@ -23,7 +23,8 @@ class AvailabilityRequest(BaseModel):
     endDate: Optional[str] = Field(description="End date for the availability check")
     numberOfConsecutiveDays: int = Field(description="Number of consecutive days required")
 
-query = "When does our colleague CW have two days available for a 2 days workshop?"
+
+query = "When does our colleague SG have two days available for a 2 days workshop?"
 
 response = client.chat.completions.create(
     model=MODEL,
