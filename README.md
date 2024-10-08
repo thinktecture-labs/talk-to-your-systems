@@ -61,7 +61,6 @@ The project relies on the following Python libraries:
 - openai
 - requests
 - instructor
-- langfuse (optional)
 - rich
 
 These dependencies are listed in the `requirements.txt` file.
