@@ -141,6 +141,7 @@ messages = [
     },
 ]
 
+# DOES IT BREAK ???
 response = client.chat.completions.create(
     model=MODEL,
     messages=messages,

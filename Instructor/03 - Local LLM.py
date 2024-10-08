@@ -16,7 +16,7 @@ client = instructor.from_openai(OpenAI(base_url=api_url), mode=instructor.Mode.J
 
 
 # --------------------------------------------------------------
-# Instructor with Maybe pattern & local LLM
+# Instructor with Maybe pattern & local LLM => GPU !!!
 # --------------------------------------------------------------
 
 class AvailabilityRequest(BaseModel):

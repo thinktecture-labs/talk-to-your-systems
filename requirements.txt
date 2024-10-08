@@ -1,5 +1,4 @@
 openai
 requests
 instructor
-langfuse
 rich

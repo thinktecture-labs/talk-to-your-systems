@@ -1,16 +1,13 @@
-#from openai import OpenAI
+from openai import OpenAI
 import json
-from langfuse.openai import OpenAI
 from rich.console import Console
 
 from prompts import extraction_system_message
-
 
 console = Console()
 
 client = OpenAI()
 MODEL = "gpt-4o-2024-08-06"
-
 
 
 # --------------------------------------------------------------
