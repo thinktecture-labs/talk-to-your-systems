@@ -1,10 +1,11 @@
 from typing import List, Optional
+
 from openai import OpenAI
+from prompts import extraction_system_message
 from pydantic import BaseModel, Field
 from rich.console import Console
-import instructor
-from prompts import extraction_system_message
 
+import instructor
 
 console = Console()
 
