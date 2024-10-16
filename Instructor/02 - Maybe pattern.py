@@ -9,16 +9,15 @@ import instructor
 
 console = Console()
 
-api_url = "http://localhost:11434/v1"
-MODEL = "qwen2.5:7b-instruct-fp16"
+api_url = "https://api.openai.com/v1/"
+MODEL = "gpt-4o-2024-08-06"
 
-client = instructor.from_openai(
-    OpenAI(base_url=api_url), 
-    mode=instructor.Mode.JSON) # NEED this!
+client = instructor.from_openai(OpenAI(base_url=api_url),
+                                mode=instructor.Mode.TOOLS_STRICT) # TOOLS_STRICT has restrictions in schema support
 
 
 # --------------------------------------------------------------
-# Instructor with Maybe pattern & local LLM => GPU !!!
+# Instructor with Maybe pattern
 # --------------------------------------------------------------
 
 class AvailabilityRequest(BaseModel):
@@ -29,7 +28,7 @@ class AvailabilityRequest(BaseModel):
 
 class MaybeAvailabilityRequest(BaseModel):
     result: Optional[AvailabilityRequest] = Field(default=None)
-    error: bool = Field(default=False)
+    error: bool
     message: Optional[str] = Field(default=None)
 
     def __bool__(self):
@@ -51,4 +50,4 @@ response = client.chat.completions.create(
     ],
 )
 
-console.print(response.model_dump_json(indent=3))
+print(response.model_dump_json(indent=3))
