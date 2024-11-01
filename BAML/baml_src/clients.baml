@@ -17,7 +17,7 @@ client<llm> CustomGPT4oMini {
   }
 }
 
-client<llm> OllamaQwen25 {
+client<llm> Ollama {
   provider "openai-generic"
   options {
     base_url "http://localhost:11434/v1"
@@ -26,11 +26,11 @@ client<llm> OllamaQwen25 {
   }
 }
 
-client<llm> LMSLlama32 {
+client<llm> LMS {
   provider "openai-generic"
   options {
     base_url "http://localhost:1234/v1"
-    model llama-3.2-3b-instruct
+    model smollm2-1.7b-instruct
   }
 }
 

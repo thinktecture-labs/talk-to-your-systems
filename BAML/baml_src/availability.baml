@@ -12,7 +12,7 @@ class MaybeAvailabilityRequest {
 }
 
 function ExtractAvailabilityRequest(request: string) -> MaybeAvailabilityRequest {
-  client "OllamaQwen25"
+  client "Ollama"
   prompt #"
     Today's date is 2024-11-01.
     You are a helpful assistant that extracts information from a given text.

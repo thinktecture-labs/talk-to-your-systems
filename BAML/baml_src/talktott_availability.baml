@@ -20,13 +20,15 @@ class TalkToTTMaybeAvailabilityRequest {
 }
 
 function ExtractTalkToTTAvailabilityRequest(request: string) -> TalkToTTMaybeAvailabilityRequest {
- client "OllamaQwen25"
+ client "LMS"
   prompt #"
     Today's date is 2024-11-01.
-    You are a helpful assistant that extracts information from a given text.
-    The text contains booking availability information for one or multiple people.
+
+    You are a helpful assistant that extracts information from a given request.
+    The request contains booking availability questions for one or multiple employees or for one or multiple skills.
     If you cannot extract the start date, use today.
-    This is the list of employees, with the initials, employee ID, full name, and skills:
+    
+    This is the list of employees, with initials|employee ID|full name|skills:
     CW|1|Christian Weyer|Generative AI, AI, KI, Software Architecture, .NET, Python
     CL|2|Christian Liebel|Angular, PWA, Web Components, W3C, Generative AI
     KD|3|Konstantin Denerz|Angular, UX, UI, Design Systems
@@ -41,9 +43,10 @@ function ExtractTalkToTTAvailabilityRequest(request: string) -> TalkToTTMaybeAva
     DS|12|Daniel Sogl|Angular, Node.js, Mobile Apps
     FS|13|Felix Schütz|Angular, Node.js, Python
 
-    Extract all available fields from this content:
+    Extract data from this request data:
     {{ request }}
 
+    Schema:
     {{ ctx.output_format }}
   "#
 }
