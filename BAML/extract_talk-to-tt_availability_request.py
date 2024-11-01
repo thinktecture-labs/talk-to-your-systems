@@ -14,6 +14,6 @@ def extract_stream(query: str) -> TalkToTTMaybeAvailabilityRequest:
 
   return final
 
-extract_stream("""
+extract("""
         When does our colleague SG have two days available for a 2 days workshop?
         """)

@@ -47,12 +47,10 @@ class MaybeAvailabilityRequest(BaseModel):
 class TalkToTTAvailabilityRequest(BaseModel):
     
     
-    detectedLanguage: Optional[str] = None
     experts: List["TalkToTTTechnicalExpert"]
     startDate: Optional[str] = None
     endDate: Optional[str] = None
     numberOfConsecutiveDays: Optional[int] = None
-    numberOfRanges: Optional[int] = None
 
 class TalkToTTMaybeAvailabilityRequest(BaseModel):
     

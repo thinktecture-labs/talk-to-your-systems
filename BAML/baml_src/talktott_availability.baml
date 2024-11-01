@@ -6,12 +6,10 @@ class TalkToTTTechnicalExpert {
 }
 
 class TalkToTTAvailabilityRequest {
-    detectedLanguage string @description("The detected language of the input")
     experts TalkToTTTechnicalExpert[] @description("List of technical experts to check availability for")
     startDate string @description("Start date for the availability check")
     endDate string? @description("End date for the availability check")
     numberOfConsecutiveDays int @description("Final number of consecutive days for availability as requested by the user")
-    numberOfRanges int? @description("Number of date ranges required (optional)")
 }
 
 class TalkToTTMaybeAvailabilityRequest {
