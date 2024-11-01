@@ -16,6 +16,6 @@ def extract_stream(query: str, date: str) -> TalkToTTMaybeAvailabilityRequest:
   return final
 
 extract("""
-        When does an expert with Python skills have two days available for a workshop?
+        When does an expert with Angular skills have two days available for a workshop?
         """,
         date.today().strftime("%Y-%m-%d"))

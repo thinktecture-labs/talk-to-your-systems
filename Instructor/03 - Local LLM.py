@@ -37,7 +37,7 @@ class MaybeAvailabilityRequest(BaseModel):
 
 
 query = "When does our colleague SG have two days available for a 2 days workshop?"
-#query = "F U!"
+#query="When does an expert with Angular skills have two days available for a workshop?"
 
 response = client.chat.completions.create(
     model=MODEL,

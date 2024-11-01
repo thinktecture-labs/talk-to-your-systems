@@ -1,8 +1,8 @@
 class TalkToTTTechnicalExpert {
-    firstName string @description("First name of the Technical Expert")
-    lastName string @description("Last name of the Technical Expert")
-    personId int @description("Person ID of the Technical Expert")
-    skills string[] @description("List of skills of the Technical Expert")
+    firstName string @description("First name of the expert")
+    lastName string @description("Last name of the expert")
+    personId int @description("Person ID of the expert")
+    skills string[] @description("List of skills of the expert")
 }
 
 class TalkToTTAvailabilityRequest {
