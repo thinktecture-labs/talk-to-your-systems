@@ -1,12 +1,13 @@
+from datetime import date
 from baml_client.sync_client import b
 from baml_client.types import TalkToTTMaybeAvailabilityRequest
 
-def extract(query: str) -> TalkToTTMaybeAvailabilityRequest:
-  response = b.ExtractTalkToTTAvailabilityRequest(query)
+def extract(query: str, date: str) -> TalkToTTMaybeAvailabilityRequest:
+  response = b.ExtractTalkToTTAvailabilityRequest(query, date)
   return response
 
-def extract_stream(query: str) -> TalkToTTMaybeAvailabilityRequest:
-  stream = b.stream.ExtractTalkToTTAvailabilityRequest(query)
+def extract_stream(query: str, date: str) -> TalkToTTMaybeAvailabilityRequest:
+  stream = b.stream.ExtractTalkToTTAvailabilityRequest(query, date)
   for msg in stream:
     print(msg)
   
@@ -15,5 +16,6 @@ def extract_stream(query: str) -> TalkToTTMaybeAvailabilityRequest:
   return final
 
 extract("""
-        When does our colleague SG have two days available for a 2 days workshop?
-        """)
+        When does an expert with Python skills have two days available for a workshop?
+        """,
+        date.today().strftime("%Y-%m-%d"))

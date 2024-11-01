@@ -22,6 +22,7 @@ client<llm> OllamaQwen25 {
   options {
     base_url "http://localhost:11434/v1"
     model qwen2.5:3b-instruct-q4_K_M
+    temperature 0.0
   }
 }
 
