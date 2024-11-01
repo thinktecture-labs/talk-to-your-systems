@@ -39,10 +39,17 @@ def all_succeeded(checks: Dict[CheckName, Check]) -> bool:
 
 
 
-class Resume(BaseModel):
+class AvailabilityRequest(BaseModel):
     
     
-    name: str
-    email: Optional[str] = None
-    experience: List[str]
-    skills: List[str]
+    personIds: List[int]
+    startDate: str
+    endDate: Optional[str] = None
+    numberOfConsecutiveDays: int
+
+class MaybeAvailabilityRequest(BaseModel):
+    
+    
+    result: Optional["AvailabilityRequest"] = None
+    error: bool
+    message: Optional[str] = None

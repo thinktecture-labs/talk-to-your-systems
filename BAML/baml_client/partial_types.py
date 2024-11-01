@@ -29,10 +29,17 @@ from .types import Checked, Check
 ###############################################################################
 
 
-class Resume(BaseModel):
+class AvailabilityRequest(BaseModel):
     
     
-    name: Optional[str] = None
-    email: Optional[str] = None
-    experience: List[Optional[str]]
-    skills: List[Optional[str]]
+    personIds: List[Optional[int]]
+    startDate: Optional[str] = None
+    endDate: Optional[str] = None
+    numberOfConsecutiveDays: Optional[int] = None
+
+class MaybeAvailabilityRequest(BaseModel):
+    
+    
+    result: Optional["AvailabilityRequest"] = None
+    error: Optional[bool] = None
+    message: Optional[str] = None

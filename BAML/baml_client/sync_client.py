@@ -47,11 +47,11 @@ class BamlSyncClient:
       return self.__stream_client
 
     
-    def ExtractResume(
+    def ExtractAvailabilityRequest(
         self,
-        resume: str,
+        request: str,
         baml_options: BamlCallOptions = {},
-    ) -> types.Resume:
+    ) -> types.MaybeAvailabilityRequest:
       __tb__ = baml_options.get("tb", None)
       if __tb__ is not None:
         tb = __tb__._tb
@@ -60,15 +60,15 @@ class BamlSyncClient:
       __cr__ = baml_options.get("client_registry", None)
 
       raw = self.__runtime.call_function_sync(
-        "ExtractResume",
+        "ExtractAvailabilityRequest",
         {
-          "resume": resume,
+          "request": request,
         },
         self.__ctx_manager.get(),
         tb,
         __cr__,
       )
-      return cast(types.Resume, raw.cast_to(types, types))
+      return cast(types.MaybeAvailabilityRequest, raw.cast_to(types, types))
     
 
 
@@ -82,11 +82,11 @@ class BamlStreamClient:
       self.__ctx_manager = ctx_manager
 
     
-    def ExtractResume(
+    def ExtractAvailabilityRequest(
         self,
-        resume: str,
+        request: str,
         baml_options: BamlCallOptions = {},
-    ) -> baml_py.BamlSyncStream[partial_types.Resume, types.Resume]:
+    ) -> baml_py.BamlSyncStream[partial_types.MaybeAvailabilityRequest, types.MaybeAvailabilityRequest]:
       __tb__ = baml_options.get("tb", None)
       if __tb__ is not None:
         tb = __tb__._tb
@@ -95,9 +95,9 @@ class BamlStreamClient:
       __cr__ = baml_options.get("client_registry", None)
 
       raw = self.__runtime.stream_function_sync(
-        "ExtractResume",
+        "ExtractAvailabilityRequest",
         {
-          "resume": resume,
+          "request": request,
         },
         None,
         self.__ctx_manager.get(),
@@ -105,10 +105,10 @@ class BamlStreamClient:
         __cr__,
       )
 
-      return baml_py.BamlSyncStream[partial_types.Resume, types.Resume](
+      return baml_py.BamlSyncStream[partial_types.MaybeAvailabilityRequest, types.MaybeAvailabilityRequest](
         raw,
-        lambda x: cast(partial_types.Resume, x.cast_to(types, partial_types)),
-        lambda x: cast(types.Resume, x.cast_to(types, types)),
+        lambda x: cast(partial_types.MaybeAvailabilityRequest, x.cast_to(types, partial_types)),
+        lambda x: cast(types.MaybeAvailabilityRequest, x.cast_to(types, types)),
         self.__ctx_manager.get(),
       )
     

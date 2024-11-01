@@ -1,12 +1,12 @@
 from baml_client.sync_client import b
-from baml_client.types import Resume
+from baml_client.types import MaybeAvailabilityRequest
 
-def example(raw_resume: str) -> Resume:
-  response = b.ExtractResume(raw_resume)
+def example(query: str) -> MaybeAvailabilityRequest:
+  response = b.ExtractAvailabilityRequest(query)
   return response
 
-def example_stream(raw_resume: str) -> Resume:
-  stream = b.stream.ExtractResume(raw_resume)
+def example_stream(query: str) -> MaybeAvailabilityRequest:
+  stream = b.stream.ExtractAvailabilityRequest(query)
   for msg in stream:
     print(msg)
   
@@ -15,8 +15,5 @@ def example_stream(raw_resume: str) -> Resume:
   return final
 
 example("""
-    Jason Doe
-    Python, Rust
-    Exp.: University of California, Berkeley, B.S. in Computer Science, 2020
-    Also an expert in Tableau, SQL, and C++
-    """)
+        When does our colleague SG have two days available for a 2 days workshop?
+        """)
