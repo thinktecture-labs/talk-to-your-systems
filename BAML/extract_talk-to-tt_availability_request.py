@@ -3,11 +3,11 @@ from baml_client.sync_client import b
 from baml_client.types import TalkToTTMaybeAvailabilityRequest
 
 def extract(query: str, date: str) -> TalkToTTMaybeAvailabilityRequest:
-  response = b.ExtractTalkToTTAvailabilityRequest(query, date)
+  response = b.ExtractTalkToTTAvailabilityRequest(query)
   return response
 
 def extract_stream(query: str, date: str) -> TalkToTTMaybeAvailabilityRequest:
-  stream = b.stream.ExtractTalkToTTAvailabilityRequest(query, date)
+  stream = b.stream.ExtractTalkToTTAvailabilityRequest(query)
   for msg in stream:
     print(msg)
   

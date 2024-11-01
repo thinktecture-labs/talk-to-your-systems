@@ -29,7 +29,7 @@ function ExtractTalkToTTAvailabilityRequest(request: string) -> TalkToTTMaybeAva
     This is the list of employees, with the initials, employee ID, full name, and skills:
     CW|1|Christian Weyer|Generative AI, AI, KI, Software Architecture, .NET, Python
     CL|2|Christian Liebel|Angular, PWA, Web Components, W3C, Generative AI
-    KD|3|Konstantin Denerz|UX, UI, Design Systems, Angular
+    KD|3|Konstantin Denerz|Angular, UX, UI, Design Systems
     MF|4|Marco Frodl|Generative AI, AI, KI
     MM|5|Max Marschall|Angular, 3D, Generative AI, Python
     NIS|6|Niklas Schubert|Angular, Node.js
