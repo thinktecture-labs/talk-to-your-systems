@@ -70,6 +70,29 @@ class BamlSyncClient:
       )
       return cast(types.MaybeAvailabilityRequest, raw.cast_to(types, types))
     
+    def ExtractTalkToTTAvailabilityRequest(
+        self,
+        request: str,
+        baml_options: BamlCallOptions = {},
+    ) -> types.TalkToTTMaybeAvailabilityRequest:
+      __tb__ = baml_options.get("tb", None)
+      if __tb__ is not None:
+        tb = __tb__._tb
+      else:
+        tb = None
+      __cr__ = baml_options.get("client_registry", None)
+
+      raw = self.__runtime.call_function_sync(
+        "ExtractTalkToTTAvailabilityRequest",
+        {
+          "request": request,
+        },
+        self.__ctx_manager.get(),
+        tb,
+        __cr__,
+      )
+      return cast(types.TalkToTTMaybeAvailabilityRequest, raw.cast_to(types, types))
+    
 
 
 
@@ -109,6 +132,36 @@ class BamlStreamClient:
         raw,
         lambda x: cast(partial_types.MaybeAvailabilityRequest, x.cast_to(types, partial_types)),
         lambda x: cast(types.MaybeAvailabilityRequest, x.cast_to(types, types)),
+        self.__ctx_manager.get(),
+      )
+    
+    def ExtractTalkToTTAvailabilityRequest(
+        self,
+        request: str,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.BamlSyncStream[partial_types.TalkToTTMaybeAvailabilityRequest, types.TalkToTTMaybeAvailabilityRequest]:
+      __tb__ = baml_options.get("tb", None)
+      if __tb__ is not None:
+        tb = __tb__._tb
+      else:
+        tb = None
+      __cr__ = baml_options.get("client_registry", None)
+
+      raw = self.__runtime.stream_function_sync(
+        "ExtractTalkToTTAvailabilityRequest",
+        {
+          "request": request,
+        },
+        None,
+        self.__ctx_manager.get(),
+        tb,
+        __cr__,
+      )
+
+      return baml_py.BamlSyncStream[partial_types.TalkToTTMaybeAvailabilityRequest, types.TalkToTTMaybeAvailabilityRequest](
+        raw,
+        lambda x: cast(partial_types.TalkToTTMaybeAvailabilityRequest, x.cast_to(types, partial_types)),
+        lambda x: cast(types.TalkToTTMaybeAvailabilityRequest, x.cast_to(types, types)),
         self.__ctx_manager.get(),
       )
     

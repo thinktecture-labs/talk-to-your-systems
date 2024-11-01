@@ -53,3 +53,29 @@ class MaybeAvailabilityRequest(BaseModel):
     result: Optional["AvailabilityRequest"] = None
     error: bool
     message: Optional[str] = None
+
+class TalkToTTAvailabilityRequest(BaseModel):
+    
+    
+    detectedLanguage: str
+    experts: List["TalkToTTTechnicalExpert"]
+    startDate: str
+    endDate: Optional[str] = None
+    numberOfConsecutiveDays: int
+    numberOfRanges: Optional[int] = None
+
+class TalkToTTMaybeAvailabilityRequest(BaseModel):
+    
+    
+    result: Optional["TalkToTTAvailabilityRequest"] = None
+    error: bool
+    note: Optional[str] = None
+    detectedLanguage: str
+
+class TalkToTTTechnicalExpert(BaseModel):
+    
+    
+    firstName: str
+    lastName: str
+    personId: int
+    skills: List[str]
