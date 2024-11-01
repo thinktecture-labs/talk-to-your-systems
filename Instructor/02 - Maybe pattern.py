@@ -13,7 +13,7 @@ api_url = "https://api.openai.com/v1/"
 MODEL = "gpt-4o-2024-08-06"
 
 client = instructor.from_openai(OpenAI(base_url=api_url),
-                                mode=instructor.Mode.TOOLS_STRICT) # TOOLS_STRICT has restrictions in schema support
+                                mode=instructor.Mode.TOOLS) # TOOLS_STRICT has restrictions in schema support
 
 
 # --------------------------------------------------------------

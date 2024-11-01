@@ -10,7 +10,7 @@ import instructor
 console = Console()
 
 api_url = "http://localhost:11434/v1"
-MODEL = "qwen2.5:7b-instruct-fp16"
+MODEL = "qwen2.5:3b-instruct-q4_K_M"
 
 client = instructor.from_openai(
     OpenAI(base_url=api_url), 
@@ -24,7 +24,7 @@ client = instructor.from_openai(
 class AvailabilityRequest(BaseModel):
     personIds: List[int] = Field(description="List of person IDs to check availability for")
     startDate: str = Field(description="Start date for the availability check")
-    endDate: Optional[str] = Field(description="End date for the availability check")
+    endDate: Optional[str] = Field(description="Optional end date for the availability check")
     numberOfConsecutiveDays: int = Field(description="Number of consecutive days required")
 
 class MaybeAvailabilityRequest(BaseModel):
@@ -49,6 +49,7 @@ response = client.chat.completions.create(
         },
         {"role": "user", "content": query},
     ],
+    temperature=0.0
 )
 
 console.print(response.model_dump_json(indent=3))
