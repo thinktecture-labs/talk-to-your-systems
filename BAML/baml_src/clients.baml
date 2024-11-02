@@ -1,6 +1,4 @@
-// Learn more about clients at https://docs.boundaryml.com/docs/snippets/clients/overview
-
-client<llm> CustomGPT4o {
+client<llm> GPT4o {
   provider openai
   options {
     model "gpt-4o-2024-08-06"
@@ -8,7 +6,7 @@ client<llm> CustomGPT4o {
   }
 }
 
-client<llm> CustomGPT4oMini {
+client<llm> GPT4oMini {
   provider openai
   retry_policy Exponential
   options {
@@ -31,8 +29,8 @@ client<llm> Groq {
   provider openai-generic
   options {
     base_url "https://api.groq.com/openai/v1"
-    api_key env.GROQ_API_KEY
     model "llama-3.2-90b-text-preview"
+    api_key env.GROQ_API_KEY
   }
 }
 
@@ -40,7 +38,7 @@ client<llm> Ollama {
   provider "openai-generic"
   options {
     base_url "http://localhost:11434/v1"
-    model qwen2.5:3b-instruct-q4_K_M
+    model "qwen2.5:3b-instruct-q4_K_M"
     temperature 0.0
   }
 }
@@ -49,12 +47,21 @@ client<llm> LMS {
   provider "openai-generic"
   options {
     base_url "http://localhost:1234/v1"
-    model qwen2.5-72b-instruct
+    model "qwen2.5-72b-instruct"
     temperature 0.0
   }
 }
 
-client<llm> CustomSonnet {
+client<llm> LlamaCpp {
+  provider "openai-generic"
+  options {
+    base_url "http://localhost:8082/v1"
+    model "qwen2.5-72b-instruct"
+    temperature 0.0
+  }
+}
+
+client<llm> Sonnet {
   provider anthropic
   options {
     model "claude-3-5-sonnet-20241022"
@@ -62,28 +69,22 @@ client<llm> CustomSonnet {
   }
 }
 
-// https://docs.boundaryml.com/docs/snippets/clients/round-robin
 client<llm> CustomFast {
   provider round-robin
   options {
-    // This will alternate between the two clients
     strategy [CustomGPT4oMini, CustomHaiku]
   }
 }
 
-// https://docs.boundaryml.com/docs/snippets/clients/fallback
 client<llm> OpenaiFallback {
   provider fallback
   options {
-    // This will try the clients in order until one succeeds
     strategy [CustomGPT4oMini, CustomGPT4oMini]
   }
 }
 
-// https://docs.boundaryml.com/docs/snippets/clients/retry
 retry_policy Constant {
   max_retries 3
-  // Strategy is optional
   strategy {
     type constant_delay
     delay_ms 200
@@ -92,7 +93,6 @@ retry_policy Constant {
 
 retry_policy Exponential {
   max_retries 2
-  // Strategy is optional
   strategy {
     type exponential_backoff
     delay_ms 300

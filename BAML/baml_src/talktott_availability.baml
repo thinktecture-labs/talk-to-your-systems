@@ -20,7 +20,7 @@ class TalkToTTMaybeAvailabilityRequest {
 }
 
 function ExtractTalkToTTAvailabilityRequest(request: string, date: string) -> TalkToTTMaybeAvailabilityRequest {
- client Groq
+ client LlamaCpp
   prompt #"
     Today's date is {{date}}.
 
@@ -56,17 +56,15 @@ function ExtractTalkToTTAvailabilityRequest(request: string, date: string) -> Ta
 test TalkToTT_SG_two_days {
     functions [ExtractTalkToTTAvailabilityRequest]
     args {
-        request #"
-             When does our colleague SG have two days available for a 2 days workshop?
-        "#
+        request #"When does our colleague SG have two days available for a 2 days workshop?"#
+        date #"2022-10-01"#
     }
 }
 
 test TalkToTT_Angular_three_days {
     functions [ExtractTalkToTTAvailabilityRequest]
     args {
-        request #"
-             When does an expert with Angular skills have three days available for a workshop?
-        "#
+        request #"When does an expert with Angular skills have three days available for a workshop?"#
+        date #"2022-10-01"#
     }
 }
