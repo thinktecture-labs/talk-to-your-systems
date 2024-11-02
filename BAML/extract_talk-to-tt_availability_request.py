@@ -19,7 +19,7 @@ def extract_stream(query: str, date: str) -> TalkToTTMaybeAvailabilityRequest:
 
   return final
 
-query = "When does our colleague SG have two days available for a 2 days workshop?"
+#query = "When does our colleague SG have two days available for a 2 days workshop?"
 query = "When does an expert with Angular skills have two days available for a workshop?"
 
 extract(query,

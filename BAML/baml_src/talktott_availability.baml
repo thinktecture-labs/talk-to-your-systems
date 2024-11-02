@@ -20,7 +20,7 @@ class TalkToTTMaybeAvailabilityRequest {
 }
 
 function ExtractTalkToTTAvailabilityRequest(request: string, date: string) -> TalkToTTMaybeAvailabilityRequest {
- client LlamaCpp
+ client GPT4o
   prompt #"
     Today's date is {{date}}.
 
