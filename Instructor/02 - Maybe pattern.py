@@ -27,7 +27,6 @@ class TechnicalExpert(BaseModel):
     skills: List[str] = Field(description="List of skills of the expert")
 
 class AvailabilityRequest(BaseModel):
-    detected_language: str = Field(description="The detected language of the input")
     experts: List[TechnicalExpert] = Field(description="List of technical experts to check availability for")
     start_date: str = Field(description="Start date for the availability check")
     end_date: Optional[str] = Field(description="End date for the availability check")
