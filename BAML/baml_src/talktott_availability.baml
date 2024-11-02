@@ -9,7 +9,7 @@ class TalkToTTAvailabilityRequest {
     experts TalkToTTTechnicalExpert[] @description("List of technical experts to check availability for")
     startDate string @description("Start date for the availability check")
     endDate string? @description("End date for the availability check")
-    numberOfConsecutiveDays int @description("Final number of consecutive days for availability as requested by the user")
+    numberOfConsecutiveDays int @description("Number of consecutive days of availability as requested by the user")
 }
 
 class TalkToTTMaybeAvailabilityRequest {
@@ -20,15 +20,17 @@ class TalkToTTMaybeAvailabilityRequest {
 }
 
 function ExtractTalkToTTAvailabilityRequest(request: string) -> TalkToTTMaybeAvailabilityRequest {
- client "LMS"
+ client CustomGPT4o
   prompt #"
     Today's date is 2024-11-01.
 
-    You are a helpful assistant that extracts information from a given request.
-    The request contains booking availability questions for one or multiple employees or for one or multiple skills.
+    You are a helpful assistant that matches data from the user message and extracts structured data based on the schema.
+    The user message contains availability-related questions for one or multiple experts or for one or multiple skills.
     If you cannot extract the start date, use today.
-    
-    This is the list of employees, with initials|employee ID|full name|skills:
+    Note: You do NOT get any availability dates in this request.
+
+    This is the list of experts with CSV format:
+    initials|person ID|full name|skills:
     CW|1|Christian Weyer|Generative AI, AI, KI, Software Architecture, .NET, Python
     CL|2|Christian Liebel|Angular, PWA, Web Components, W3C, Generative AI
     KD|3|Konstantin Denerz|Angular, UX, UI, Design Systems
@@ -43,11 +45,11 @@ function ExtractTalkToTTAvailabilityRequest(request: string) -> TalkToTTMaybeAva
     DS|12|Daniel Sogl|Angular, Node.js, Mobile Apps
     FS|13|Felix Schütz|Angular, Node.js, Python
 
-    Extract data from this request data:
-    {{ request }}
-
     Schema:
     {{ ctx.output_format }}
+
+    {{ _.role("user") }}
+    {{ request }}
   "#
 }
 

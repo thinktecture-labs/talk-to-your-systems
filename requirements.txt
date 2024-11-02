@@ -3,3 +3,4 @@ requests
 instructor
 rich
 baml-py
+python-dotenv

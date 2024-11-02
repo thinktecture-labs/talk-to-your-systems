@@ -31,6 +31,7 @@ client<llm> LMS {
   options {
     base_url "http://localhost:1234/v1"
     model smollm2-1.7b-instruct
+    temperature 0.0
   }
 }
 
@@ -38,15 +39,6 @@ client<llm> CustomSonnet {
   provider anthropic
   options {
     model "claude-3-5-sonnet-20241022"
-    api_key env.ANTHROPIC_API_KEY
-  }
-}
-
-client<llm> CustomHaiku {
-  provider anthropic
-  retry_policy Constant
-  options {
-    model "claude-3-haiku-20240307"
     api_key env.ANTHROPIC_API_KEY
   }
 }

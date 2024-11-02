@@ -1,3 +1,8 @@
+from dotenv import load_dotenv
+
+# Load environment variables before any other imports
+load_dotenv()
+
 from datetime import date
 from baml_client.sync_client import b
 from baml_client.types import TalkToTTMaybeAvailabilityRequest
