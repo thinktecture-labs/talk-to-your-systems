@@ -49,7 +49,7 @@ client<llm> LMS {
   provider "openai-generic"
   options {
     base_url "http://localhost:1234/v1"
-    model qwen2.5-7b-instruct
+    model qwen2.5-72b-instruct
     temperature 0.0
   }
 }
