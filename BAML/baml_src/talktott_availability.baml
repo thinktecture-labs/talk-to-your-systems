@@ -20,7 +20,7 @@ class TalkToTTMaybeAvailabilityRequest {
 }
 
 function ExtractTalkToTTAvailabilityRequest(request: string, date: string) -> TalkToTTMaybeAvailabilityRequest {
- client LMS
+ client Groq
   prompt #"
     Today's date is {{date}}.
 

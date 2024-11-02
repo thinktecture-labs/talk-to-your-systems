@@ -17,6 +17,25 @@ client<llm> CustomGPT4oMini {
   }
 }
 
+client<llm> Azure {
+  provider azure-openai
+  options {
+    resource_name "openai-cw-swe-central"
+    deployment_id "gpt-4o-auto-update"
+    api_version "2024-08-01-preview"
+    api_key env.AZURE_OPENAI_API_KEY
+  }
+}
+
+client<llm> Groq {
+  provider openai-generic
+  options {
+    base_url "https://api.groq.com/openai/v1"
+    api_key env.GROQ_API_KEY
+    model "llama-3.2-90b-text-preview"
+  }
+}
+
 client<llm> Ollama {
   provider "openai-generic"
   options {
