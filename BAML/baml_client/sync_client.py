@@ -72,7 +72,7 @@ class BamlSyncClient:
     
     def ExtractTalkToTTAvailabilityRequest(
         self,
-        request: str,
+        request: str,date: str,
         baml_options: BamlCallOptions = {},
     ) -> types.TalkToTTMaybeAvailabilityRequest:
       __tb__ = baml_options.get("tb", None)
@@ -85,7 +85,7 @@ class BamlSyncClient:
       raw = self.__runtime.call_function_sync(
         "ExtractTalkToTTAvailabilityRequest",
         {
-          "request": request,
+          "request": request,"date": date,
         },
         self.__ctx_manager.get(),
         tb,
@@ -137,7 +137,7 @@ class BamlStreamClient:
     
     def ExtractTalkToTTAvailabilityRequest(
         self,
-        request: str,
+        request: str,date: str,
         baml_options: BamlCallOptions = {},
     ) -> baml_py.BamlSyncStream[partial_types.TalkToTTMaybeAvailabilityRequest, types.TalkToTTMaybeAvailabilityRequest]:
       __tb__ = baml_options.get("tb", None)
@@ -151,6 +151,7 @@ class BamlStreamClient:
         "ExtractTalkToTTAvailabilityRequest",
         {
           "request": request,
+          "date": date,
         },
         None,
         self.__ctx_manager.get(),

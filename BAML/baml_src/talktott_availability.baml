@@ -19,10 +19,10 @@ class TalkToTTMaybeAvailabilityRequest {
     detectedLanguage string @description("The detected language of the input")
 }
 
-function ExtractTalkToTTAvailabilityRequest(request: string) -> TalkToTTMaybeAvailabilityRequest {
- client CustomGPT4o
+function ExtractTalkToTTAvailabilityRequest(request: string, date: string) -> TalkToTTMaybeAvailabilityRequest {
+ client LMS
   prompt #"
-    Today's date is 2024-11-01.
+    Today's date is {{date}}.
 
     You are a helpful assistant that matches data from the user message and extracts structured data based on the schema.
     The user message contains availability-related questions for one or multiple experts or for one or multiple skills.

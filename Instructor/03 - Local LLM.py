@@ -9,8 +9,8 @@ import instructor
 
 console = Console()
 
-api_url = "http://localhost:11434/v1"
-MODEL = "qwen2.5:3b-instruct-q4_K_M"
+api_url = "http://localhost:1234/v1"
+MODEL = "qwen2.5-7b-instruct" #"qwen2.5:7b-instruct-q4_K_M"
 
 client = instructor.from_openai(
     OpenAI(base_url=api_url), 
