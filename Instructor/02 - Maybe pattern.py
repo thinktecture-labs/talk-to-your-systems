@@ -46,16 +46,22 @@ class MaybeAvailabilityRequest(BaseModel):
 query = "When does our colleague SG have two days available for a 2 days workshop?"
 query = "When does an expert with Angular skills have two days available for a workshop?"
 
-response = client.chat.completions.create(
-    model=MODEL,
-    response_model=MaybeAvailabilityRequest,
-    messages=[
-        {
-            "role": "system",
-            "content": extraction_system_message
-        },
-        {"role": "user", "content": query},
-    ],
-)
+def eval():
+    response = client.chat.completions.create(
+        model=MODEL,
+        response_model=MaybeAvailabilityRequest,
+        messages=[
+            {
+                "role": "system",
+                "content": extraction_system_message
+            },
+            {"role": "user", "content": query},
+        ],
+    )
+    # print(response.model_dump_json(indent=3))
 
-print(response.model_dump_json(indent=3))
+
+import timeit
+
+if __name__ == "__main__":
+  print(timeit.timeit(eval, number=5))

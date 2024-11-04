@@ -19,34 +19,19 @@ class TalkToTTMaybeAvailabilityRequest {
     detectedLanguage string @description("The detected language of the input")
 }
 
-function ExtractTalkToTTAvailabilityRequest(request: string, date: string) -> TalkToTTMaybeAvailabilityRequest {
+function ExtractTalkToTTAvailabilityRequest(request: string, date: string, people: string) -> TalkToTTMaybeAvailabilityRequest {
  client GPT4o
   prompt #"
-    Today's date is {{date}}.
-
-    You are a helpful assistant that matches data from the user message and extracts structured data based on the schema.
-    The user message contains availability-related questions for one or multiple experts or for one or multiple skills.
+    Today's date is {{ date }}. Please consider this when processing the availability information.
+    You are a helpful assistant that extracts information from a given text. The text contains booking availability information for one or multiple people.
     If you cannot extract the start date, use today.
-    Note: You do NOT get any availability dates in this request.
-
-    This is the list of experts with CSV format:
-    initials|person ID|full name|skills:
-    CW|1|Christian Weyer|Generative AI, AI, KI, Software Architecture, .NET, Python
-    CL|2|Christian Liebel|Angular, PWA, Web Components, W3C, Generative AI
-    KD|3|Konstantin Denerz|Angular, UX, UI, Design Systems
-    MF|4|Marco Frodl|Generative AI, AI, KI
-    MM|5|Max Marschall|Angular, 3D, Generative AI, Python
-    NIS|6|Niklas Schubert|Angular, Node.js
-    PG|7|Pawel Gerr|.NET, ASP.NET, Entity Framework, Identity and Access Management
-    SL|8|Sascha Lehmann|Angular, UX, UI, Design Systems
-    SG|9|Sebastian Gingter|Generative AI, AI, KI, .NET, Python
-    TH|10|Thomas Hilzendegen|Angular, .NET, Software Architecture
-    YB|11|Yannick Baron|Angular, Reactive Development, ngxStore, git, Python
-    DS|12|Daniel Sogl|Angular, Node.js, Mobile Apps
-    FS|13|Felix Schütz|Angular, Node.js, Python
-
-    Schema:
+    This is the list of employees, with the initials, employee ID, full name, and skills:
+    {{ people }}
+    
+    DO NOT invent data. DO NOT hallucinate!
     {{ ctx.output_format }}
+
+    NO QUOTES AROUND KEYS!
 
     {{ _.role("user") }}
     {{ request }}
