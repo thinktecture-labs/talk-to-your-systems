@@ -13,7 +13,7 @@ console = Console()
 #client = instructor.from_openai(OpenAI())
 #MODEL = "gpt-4o-2024-08-06"
 
-client = instructor.from_cerebras(Cerebras())
+client = instructor.from_cerebras(Cerebras(), mode=instructor.Mode.CEREBRAS_TOOLS)
 MODEL = "llama3.1-70b"
 
 
