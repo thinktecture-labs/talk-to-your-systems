@@ -1,6 +1,7 @@
 from typing import List, Optional
 
 from openai import OpenAI
+from cerebras.cloud.sdk import Cerebras
 from prompts import extraction_system_message
 from pydantic import BaseModel, Field
 from rich.console import Console
