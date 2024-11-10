@@ -21,16 +21,24 @@ client = instructor.from_openai(
 # Instructor with Maybe pattern & local LLM => GPU !!!
 # --------------------------------------------------------------
 
+class TechnicalExpert(BaseModel):
+    first_name: str = Field(description="First name of the expert")
+    last_name: str = Field(description="Last name of the expert")
+    person_id: int = Field(description="Person ID of the expert")
+    skills: List[str] = Field(description="List of skills of the expert")
+
 class AvailabilityRequest(BaseModel):
-    personIds: List[int] = Field(description="List of person IDs to check availability for")
-    startDate: str = Field(description="Start date for the availability check")
-    endDate: Optional[str] = Field(description="End date for the availability check")
-    numberOfConsecutiveDays: int = Field(description="Number of consecutive days required")
+    experts: List[TechnicalExpert] = Field(description="List of technical experts to check availability for")
+    start_date: str = Field(description="Start date for the availability check")
+    end_date: Optional[str] = Field(description="Optional end date for the availability check, if specified in the request")
+    number_of_consecutive_days: int = Field(description="Final number of consecutive days for availability as requested by the user")
+    number_of_ranges: Optional[int] = Field(None, description="Number of date ranges required (optional)")
 
 class MaybeAvailabilityRequest(BaseModel):
     result: Optional[AvailabilityRequest] = Field(default=None)
-    error: bool = Field(default=False)
-    message: Optional[str] = Field(default=None)
+    error: bool
+    note: str
+    detected_language: str = Field(description="The detected language of the input")
 
     def __bool__(self):
         return self.result is not None
