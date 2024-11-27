@@ -10,7 +10,7 @@ import instructor
 console = Console()
 
 api_url = "http://localhost:11434/v1"
-MODEL = "qwen2.5:7b-instruct-fp16"
+MODEL = "qwen2.5:7b-instruct-Q4_K_M"
 
 client = instructor.from_openai(
     OpenAI(base_url=api_url), 
@@ -45,7 +45,7 @@ class MaybeAvailabilityRequest(BaseModel):
 
 
 query = "When does our colleague SG have two days available for a 2 days workshop?"
-#query = "F U!"
+#query = "When does an expert with Angular skills have two days available for a workshop?"
 
 response = client.chat.completions.create(
     model=MODEL,

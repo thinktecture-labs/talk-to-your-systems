@@ -81,6 +81,10 @@ console.print(tool_call)
 console.print(function_args)
 
 
+
+
+
+
 # --------------------------------------------------------------
 # Changing the schema, not resulting in an error - or...?
 # --------------------------------------------------------------
