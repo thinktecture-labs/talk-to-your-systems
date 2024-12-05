@@ -1,6 +1,7 @@
 from typing import List, Optional
 
 from openai import OpenAI
+from cerebras.cloud.sdk import Cerebras
 from prompts import extraction_system_message
 from pydantic import BaseModel, Field
 from rich.console import Console
@@ -9,8 +10,8 @@ import instructor
 
 console = Console()
 
-api_url = "https://api.openai.com/v1/"
-MODEL = "gpt-4o-2024-08-06"
+api_url = "https://api.openai.com/v1/" #"https://api.cerebras.ai/v1"
+MODEL = "gpt-4o-2024-08-06" #"llama3.1-70b"
 
 client = instructor.from_openai(OpenAI(base_url=api_url),
                                 mode=instructor.Mode.TOOLS)
@@ -43,7 +44,10 @@ class MaybeAvailabilityRequest(BaseModel):
 
 
 query = "When does our colleague SG have two days available for a 2 days workshop?"
-#query = "When does an expert with Angular skills have two days available for a workshop?"
+query = """When does an expert with Angular skills have two days available for a workshop?
+        "NO_USER_MESSAGE".
+        If no user message or question was provided in the previous line, don't reply with JSON, but output a single text string with your answer.
+        """
 
 response = client.chat.completions.create(
     model=MODEL,

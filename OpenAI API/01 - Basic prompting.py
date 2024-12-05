@@ -14,7 +14,7 @@ MODEL = "gpt-4o-2024-08-06"
 # Unstructured output example
 # --------------------------------------------------------------
 
-query = "When does our colleague SG have two days available for a 2 days workshop?"
+query = "When does our colleague SG have two days available for a workshop?"
 
 messages = [
     {"role": "system", "content": extraction_system_message},

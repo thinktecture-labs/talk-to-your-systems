@@ -9,4 +9,29 @@ extraction_system_message = (f"Today's date is {today_date}. Please consider thi
             "If you cannot extract the start date, use today.\n"
             "This is the list of employees, with the initials, employee ID, full name, and skills:\n"
             f"{employees}\n\n"
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             "DO NOT invent data. DO NOT hallucinate!")

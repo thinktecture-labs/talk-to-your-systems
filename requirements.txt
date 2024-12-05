@@ -2,3 +2,4 @@ openai
 requests
 instructor
 rich
+cerebras_cloud_sdk
