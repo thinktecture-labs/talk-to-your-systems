@@ -10,11 +10,11 @@ import instructor
 
 console = Console()
 
-api_url = "https://api.openai.com/v1/" #"https://api.cerebras.ai/v1"
-MODEL = "gpt-4o-2024-08-06" #"llama3.1-70b"
+api_url = "https://api.cerebras.ai/v1" #"https://api.deepseek.com/v1" #"https://api.openai.com/v1"
+MODEL = "llama-3.3-70b" #"deepseek-chat" #"gpt-4o-2024-08-06"
 
 client = instructor.from_openai(OpenAI(base_url=api_url),
-                                mode=instructor.Mode.TOOLS)
+                                mode=instructor.Mode.JSON)
 
 # --------------------------------------------------------------
 # Instructor with Maybe pattern
@@ -44,10 +44,10 @@ class MaybeAvailabilityRequest(BaseModel):
 
 
 query = "When does our colleague SG have two days available for a 2 days workshop?"
-query = """When does an expert with Angular skills have two days available for a workshop?
-        "NO_USER_MESSAGE".
-        If no user message or question was provided in the previous line, don't reply with JSON, but output a single text string with your answer.
-        """
+#query = """When does an expert with Angular skills have two days available for a workshop?"""
+#        "NO_USER_MESSAGE".
+#        If no user message or question was provided in the previous line, don't reply with JSON, but output a single text string with your answer.
+#        """
 
 response = client.chat.completions.create(
     model=MODEL,
