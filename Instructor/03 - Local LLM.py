@@ -9,17 +9,12 @@ import instructor
 
 console = Console()
 
-api_url = "http://localhost:11434/v1"
-MODEL = "qwen2.5:7b-instruct-Q4_K_M"
+api_url = "http://localhost:12434/engines/v1"
+MODEL = "ai/qwen2.5:7B-Q4_K_M"
 
 client = instructor.from_openai(
-    OpenAI(base_url=api_url), 
-    mode=instructor.Mode.JSON) # NEED this for many OSS models
-
-
-# --------------------------------------------------------------
-# Instructor with Maybe pattern & local LLM => GPU !!!
-# --------------------------------------------------------------
+client = OpenAI(base_url=api_url), 
+    mode=instructor.Mode.TOOLS)
 
 class TechnicalExpert(BaseModel):
     first_name: str = Field(description="First name of the expert")
@@ -30,7 +25,7 @@ class TechnicalExpert(BaseModel):
 class AvailabilityRequest(BaseModel):
     experts: List[TechnicalExpert] = Field(description="List of technical experts to check availability for")
     start_date: str = Field(description="Start date for the availability check")
-    end_date: Optional[str] = Field(description="Optional end date for the availability check, if specified in the request")
+    end_date: Optional[str] = Field(description="Optional end date for the availability check, if specified in the request - otherwise null")
     number_of_consecutive_days: int = Field(description="Final number of consecutive days for availability as requested by the user")
     number_of_ranges: Optional[int] = Field(None, description="Number of date ranges required (optional)")
 
@@ -39,7 +34,7 @@ class MaybeAvailabilityRequest(BaseModel):
     error: bool
     note: str
     detected_language: str = Field(description="The detected language of the input")
-
+ 
     def __bool__(self):
         return self.result is not None
 
@@ -55,7 +50,7 @@ response = client.chat.completions.create(
             "role": "system",
             "content": extraction_system_message
         },
-        {"role": "user", "content": query},
+        {"role": "user", "content": query + " /nothink"},
     ],
 )
 

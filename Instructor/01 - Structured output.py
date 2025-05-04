@@ -45,7 +45,7 @@ console.print(response.model_dump_json(indent=3))
 # --------------------------------------------------------------
 # Streaming structured output example
 # --------------------------------------------------------------
-
+'''
 response_stream = client.chat.completions.create_partial(
     model=MODEL,
     response_model=AvailabilityRequest,
@@ -60,3 +60,4 @@ response_stream = client.chat.completions.create_partial(
 
 for user in response_stream:
     console.print(user)
+'''
