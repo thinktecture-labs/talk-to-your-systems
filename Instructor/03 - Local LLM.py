@@ -13,7 +13,7 @@ api_url = "http://localhost:12434/engines/v1"
 MODEL = "ai/qwen2.5:7B-Q4_K_M"
 
 client = instructor.from_openai(
-client = OpenAI(base_url=api_url), 
+    OpenAI(base_url=api_url), 
     mode=instructor.Mode.TOOLS)
 
 class TechnicalExpert(BaseModel):
@@ -48,9 +48,9 @@ response = client.chat.completions.create(
     messages=[
         {
             "role": "system",
-            "content": extraction_system_message
+            "content": extraction_system_message + " /no_think"
         },
-        {"role": "user", "content": query + " /nothink"},
+        {"role": "user", "content": query + " /no_think"}
     ],
 )
 

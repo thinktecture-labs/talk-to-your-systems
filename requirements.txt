@@ -2,3 +2,5 @@ openai
 requests
 instructor
 rich
+llama-cpp-python
+huggingface-hub
