@@ -8,7 +8,7 @@ from rich.console import Console
 console = Console()
 
 api_url = "http://localhost:1234/v1"
-MODEL = "lmstudio-community/qwen3-8b"
+MODEL = "qwen/qwen3-30b-a3b" #"lmstudio-community/qwen3-8b"
 
 client = OpenAI(base_url=api_url)
 
@@ -37,7 +37,7 @@ class MaybeAvailabilityRequest(BaseModel):
 
 
 query = "When does our colleague SG have two days available for a 2 days workshop?"
-#query = "When does an expert with Angular skills have two days available for a workshop?"
+query = "When does an expert with Angular skills have two days available for a workshop?"
 
 response = client.beta.chat.completions.parse(
     model=MODEL,

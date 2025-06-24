@@ -5,8 +5,9 @@ today_date = date.today().strftime("%Y-%m-%d")
 employees = read_employees()
 
 extraction_system_message = (f"Today's date is {today_date}. Please consider this when processing the availability information.\n"
-            "You are a helpful assistant that extracts information from a given text. The text contains questions about booking availability information for one or multiple people.\n"
-            "It does not contain the availability information itself.\n"
+            "You are a helpful assistant that extracts information from a given text.\n"
+            "The text contains questions or inquiries about booking availability information for one or multiple people.\n"
+            "It does not contain the availability information itself. You need to extract the data based on the schema below.\n"
             "If you cannot extract the start date, use today.\n"
             "This is the list of employees, with the initials, employee ID, full name, and skills:\n"
             f"{employees}\n\n")
