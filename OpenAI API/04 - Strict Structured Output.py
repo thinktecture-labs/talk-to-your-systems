@@ -79,7 +79,7 @@ class AvailabilityRequest(BaseModel):
     numberOfConsecutiveDays: int = Field(description="Number of consecutive days required")
 
 def get_availability_request_pydantic(query: str):
-    completion = client.beta.chat.completions.parse(
+    completion = client.chat.completions.parse(
         model=MODEL,
         messages=[
             {"role": "system", "content": extraction_system_message},
@@ -91,4 +91,4 @@ def get_availability_request_pydantic(query: str):
     return completion.choices[0].message.parsed
 
 response_pydantic = get_availability_request_pydantic(query)
-console.print(response_pydantic.model_dump())
+console.print(response_pydantic)

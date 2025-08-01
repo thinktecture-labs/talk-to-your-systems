@@ -9,5 +9,5 @@ extraction_system_message = (f"Today's date is {today_date}. Please consider thi
             "The text contains questions or inquiries about booking availability information for one or multiple people.\n"
             "It does not contain the availability information itself. You need to extract the data based on the schema below.\n"
             "If you cannot extract the start date, use today.\n"
-            "This is the list of employees, with the initials, employee ID, full name, and skills:\n"
+            "This is the list of experts, with the employee ID, initials, first name, last name,and skills:\n"
             f"{employees}\n\n")

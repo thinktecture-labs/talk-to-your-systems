@@ -34,11 +34,6 @@ message = response.choices[0].message.content
 print(message)
 
 
-
-
-
-
-
 # --------------------------------------------------------------
 # Structured output example via prompt engineering
 # --------------------------------------------------------------

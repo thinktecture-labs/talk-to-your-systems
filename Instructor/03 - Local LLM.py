@@ -9,8 +9,8 @@ import instructor
 
 console = Console()
 
-api_url = "http://localhost:12434/engines/v1"
-MODEL = "ai/qwen2.5:7B-Q4_K_M"
+api_url = "http://localhost:11434/v1" #"http://localhost:12434/engines/v1"
+MODEL = "qwen3:30b-a3b-instruct-2507-q4_K_M" #"ai/qwen2.5:7B-Q4_K_M"
 
 client = instructor.from_openai(
     OpenAI(base_url=api_url), 
@@ -20,7 +20,7 @@ class TechnicalExpert(BaseModel):
     first_name: str = Field(description="First name of the expert")
     last_name: str = Field(description="Last name of the expert")
     person_id: int = Field(description="Person ID of the expert")
-    skills: List[str] = Field(description="List of skills of the expert")
+    #skills: List[str] = Field(description="List of skills of the expert")
 
 class AvailabilityRequest(BaseModel):
     experts: List[TechnicalExpert] = Field(description="List of technical experts to check availability for")
@@ -39,19 +39,21 @@ class MaybeAvailabilityRequest(BaseModel):
         return self.result is not None
 
 
-query = "When does our colleague SG have two days available for a 2 days workshop?"
+query = "When does our colleague SG have two days available for a workshop?"
 query = "When does an expert with Angular skills have two days available for a workshop?"
 
 response = client.chat.completions.create(
     model=MODEL,
-    response_model=MaybeAvailabilityRequest,
+    response_model=AvailabilityRequest,
     messages=[
         {
             "role": "system",
-            "content": extraction_system_message + " /no_think"
+            "content": extraction_system_message
         },
-        {"role": "user", "content": query + " /no_think"}
+        {"role": "user", "content": query}
     ],
 )
 
-console.print(response.model_dump_json(indent=3))
+
+console.print(response)
+console.print(f"Number of experts: {len(response.experts)}")

@@ -1,13 +1,77 @@
-CW|1|Christian Weyer|Generative AI, AI, KI, Software Architecture, .NET, Python
-CL|2|Christian Liebel|Angular, PWA, Web Components, W3C, Generative AI
-KD|3|Konstantin Denerz|Angular, UX, UI, Design Systems
-MF|4|Marco Frodl|Generative AI, AI, KI
-MM|5|Max Marschall|Angular, 3D, Generative AI, Python
-NIS|6|Niklas Schubert|Angular, Node.js
-PG|7|Pawel Gerr|.NET, ASP.NET, Entity Framework, Identity and Access Management
-SL|8|Sascha Lehmann|Angular, UX, UI, Design Systems
-SG|9|Sebastian Gingter|Generative AI, AI, KI, .NET, Python
-TH|10|Thomas Hilzendegen|Angular, .NET, Software Architecture
-YB|11|Yannick Baron|Angular, Reactive Development, ngxStore, git, Python
-DS|12|Daniel Sogl|Angular, Node.js, Mobile Apps
-FS|13|Felix Schütz|Angular, Node.js, Python
+- ID: 1
+  Initials: CW
+  First Name: Christian
+  Last Name: Weyer
+  Skills: Generative AI, AI, KI, Software Architecture, .NET, Python
+
+- ID: 2
+  Initials: CL
+  First Name: Christian
+  Last Name: Liebel
+  Skills: Angular, PWA, Web Components, W3C, Generative AI
+
+- ID: 3
+  Initials: KD
+  First Name: Konstantin
+  Last Name: Denerz
+  Skills: Angular, UX, UI, Design Systems
+
+- ID: 4
+  Initials: MF
+  First Name: Marco
+  Last Name: Frodl
+  Skills: Generative AI, AI, KI
+
+- ID: 5
+  Initials: MM
+  First Name: Max
+  Last Name: Marschall
+  Skills: Angular, 3D, Generative AI, Python
+
+- ID: 6
+  Initials: NiS
+  First Name: Niklas
+  Last Name: Schubert
+  Skills: Angular, Node.js
+
+- ID: 7
+  Initials: PG
+  First Name: Pawel
+  Last Name: Gerr
+  Skills: .NET, ASP.NET, Entity Framework, Identity and Access Management
+
+- ID: 8
+  Initials: SL
+  First Name: Sascha
+  Last Name: Lehmann
+  Skills: Angular, UX, UI, Design Systems
+
+- ID: 9
+  Initials: SG
+  First Name: Sebastian
+  Last Name: Gingter
+  Skills: Generative AI, AI, KI, .NET, Python
+
+- ID: 10
+  Initials: TH
+  First Name: Thomas
+  Last Name: Hilzendegen
+  Skills: Angular, .NET, Software Architecture
+
+- ID: 11
+  Initials: YB
+  First Name: Yannick
+  Last Name: Baron
+  Skills: Angular, Reactive Development, ngxStore, git, Python
+
+- ID: 12
+  Initials: DS
+  First Name: Daniel
+  Last Name: Sogl
+  Skills: Angular, Node.js, Mobile Apps
+
+- ID: 13
+  Initials: FS
+  First Name: Felix
+  Last Name: Schütz
+  Skills: Angular, Node.js, Python
