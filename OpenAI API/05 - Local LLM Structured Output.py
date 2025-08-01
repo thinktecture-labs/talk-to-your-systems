@@ -38,7 +38,7 @@ class MaybeAvailabilityRequest(BaseModel):
 
     
 query = "When does SG have two days available for a workshop?"
-query = "Wann haben CW und MF mal 3 Tage verfügbar?"
+query = "Wann sind CW und MF mal 3 Tage verfügbar?"
 query = "When does an expert with Python skills have two days available for a workshop?"
 
 response = client.chat.completions.parse(

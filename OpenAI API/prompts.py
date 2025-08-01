@@ -12,4 +12,4 @@ extraction_system_message = (f"Today's date is {today_date}. Please consider thi
             "If you cannot extract the start date, use today. If no end date is specified, use null.\n"
             "Double-check you really have exactly ALL the experts from the list below that match the query.\n"
             "This is the list of experts, with the employee ID, initials, first name, last name,and skills:\n"
-            f"{employees}\n\n")
+            f"{employees}\n")
