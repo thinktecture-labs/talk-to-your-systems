@@ -10,8 +10,8 @@ import instructor
 
 console = Console()
 
-api_url = "https://api.cerebras.ai/v1" 
-MODEL = "llama-3.3-70b"
+api_url = "https://api.cerebras.ai/v1" #"https://openai.inference.de-txl.ionos.com/v1"
+MODEL = "llama-3.3-70b" #"meta-llama/Llama-3.3-70B-Instruct"
 
 client = instructor.from_openai(OpenAI(base_url=api_url),
                                 mode=instructor.Mode.JSON)
@@ -39,8 +39,11 @@ class MaybeAvailabilityRequest(BaseModel):
         return self.result is not None
 
 
-query = "When does our colleague CL have two days available for a 2 days workshop?"
-#query = "When does an expert with Angular skills have two days available for a workshop?"
+#query = "When does SG have two days available for a workshop?"
+#query = "Wann sind CW und MF mal 3 Tage verfügbar?"
+query = "When does an expert with Angular skills have two days available for a workshop?"
+
+print(query)
 
 response = client.chat.completions.create(
     model=MODEL,
@@ -55,3 +58,4 @@ response = client.chat.completions.create(
 )
 
 print(response.model_dump_json(indent=3))
+print(f"Number of experts: {len(response.result.experts)}")
