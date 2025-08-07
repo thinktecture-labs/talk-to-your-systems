@@ -9,12 +9,12 @@ import instructor
 
 console = Console()
 
-api_url = "http://localhost:11434/v1" #"http://localhost:12434/engines/v1"
-MODEL = "qwen3:30b-a3b-instruct-2507-q4_K_M" #"ai/qwen2.5:7B-Q4_K_M"
+api_url = "http://localhost:7777/v1" #"http://localhost:11434/v1" #"http://localhost:12434/engines/v1"
+MODEL = "Qwen3-30B-A3B-Instruct-2507-UD-Q8_K_XL" #"qwen3:30b-a3b-instruct-2507-q4_K_M" #"gpt-oss:20b" #"ai/qwen2.5:7B-Q4_K_M"
 
 client = instructor.from_openai(
     OpenAI(base_url=api_url), 
-    mode=instructor.Mode.TOOLS)
+    mode=instructor.Mode.JSON)
 
 class TechnicalExpert(BaseModel):
     first_name: str = Field(description="First name of the expert")
@@ -39,12 +39,15 @@ class MaybeAvailabilityRequest(BaseModel):
         return self.result is not None
 
 
-query = "When does our colleague SG have two days available for a workshop?"
-query = "When does an expert with Angular skills have two days available for a workshop?"
+query = "When does SG have two days available for a workshop?"
+query = "Wann sind CW und MF mal 3 Tage verfügbar?"
+query = "When does an expert with Generative AI skills have two days available?"
+
+print(query)
 
 response = client.chat.completions.create(
     model=MODEL,
-    response_model=AvailabilityRequest,
+    response_model=MaybeAvailabilityRequest,
     messages=[
         {
             "role": "system",
@@ -56,4 +59,4 @@ response = client.chat.completions.create(
 
 
 console.print(response)
-console.print(f"Number of experts: {len(response.experts)}")
+console.print(f"Number of experts: {len(response.result.experts)}")
