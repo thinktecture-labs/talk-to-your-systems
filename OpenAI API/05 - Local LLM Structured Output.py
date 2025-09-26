@@ -8,7 +8,7 @@ from rich.console import Console
 console = Console()
 
 api_url = "http://localhost:1234/v1"
-MODEL = "qwen/qwen3-30b-a3b-2507" #"qwen/qwen3-30b-a3b" #"lmstudio-community/qwen3-8b"
+MODEL = "qwen/qwen3-4b-2507" #"qwen/qwen3-next-80b" #qwen/qwen3-30b-a3b-2507" #"qwen/qwen3-30b-a3b" #"lmstudio-community/qwen3-8b"
 
 client = OpenAI(base_url=api_url)
 
@@ -18,7 +18,7 @@ class TechnicalExpert(BaseModel):
     last_name: str = Field(description="Last name of the expert")
     initials: str = Field(description="Initials of the expert")
     id: int = Field(description="ID of the expert")
-    #skills: List[str] = Field(description="List of all original skills of the expert")
+    skills: List[str] = Field(description="List of all original skills of the expert")
 
 class AvailabilityRequest(BaseModel):
     experts: List[TechnicalExpert] = Field(description="List of technical experts to check availability for that match the query")
@@ -36,10 +36,10 @@ class MaybeAvailabilityRequest(BaseModel):
     def __bool__(self):
         return self.result is not None
 
-    
+
 query = "When does SG have two days available for a workshop?"
 query = "Wann sind CW und MF mal 3 Tage verfügbar?"
-#query = "When does an expert with Python skills have two days available for a workshop?"
+query = "When does an expert with Angular skills have two days available for a workshop?"
 
 response = client.chat.completions.parse(
     model=MODEL,

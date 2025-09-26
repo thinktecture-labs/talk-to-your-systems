@@ -4,7 +4,6 @@ from rich.console import Console
 
 from prompts import extraction_system_message
 
-
 console = Console()
 
 client = OpenAI()

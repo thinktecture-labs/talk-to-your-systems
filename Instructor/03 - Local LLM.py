@@ -1,4 +1,5 @@
 from typing import List, Optional
+import time
 
 from openai import OpenAI
 from prompts import extraction_system_message
@@ -9,12 +10,12 @@ import instructor
 
 console = Console()
 
-api_url = "http://localhost:7777/v1" #"http://localhost:11434/v1" #"http://localhost:12434/engines/v1"
-MODEL = "Qwen3-30B-A3B-Instruct-2507-UD-Q8_K_XL" #"qwen3:30b-a3b-instruct-2507-q4_K_M" #"gpt-oss:20b" #"ai/qwen2.5:7B-Q4_K_M"
+api_url = "http://localhost:1234/v1" #"http://localhost:8000/v1" #"http://localhost:11434/v1" #"http://localhost:12434/engines/v1"
+MODEL = "qwen/qwen3-4b-2507" #"Qwen3-30B-A3B-Instruct-2507-MLX-4bit" #"Qwen3-30B-A3B-Instruct-2507-UD-Q8_K_XL" #"Qwen3-30B-A3B-Instruct-2507-Q4_K_S" #"qwen3:30b-a3b-instruct-2507-q4_K_M" #"gpt-oss:20b" #"ai/qwen2.5:7B-Q4_K_M"
 
 client = instructor.from_openai(
     OpenAI(base_url=api_url), 
-    mode=instructor.Mode.JSON)
+    mode=instructor.Mode.TOOLS)
 
 class TechnicalExpert(BaseModel):
     first_name: str = Field(description="First name of the expert")
@@ -41,9 +42,11 @@ class MaybeAvailabilityRequest(BaseModel):
 
 query = "When does SG have two days available for a workshop?"
 query = "Wann sind CW und MF mal 3 Tage verfügbar?"
-query = "When does an expert with Generative AI skills have two days available?"
+query = "When does an expert with Generative AI skills have 4 days available?"
 
 print(query)
+
+start_time = time.perf_counter()
 
 response = client.chat.completions.create(
     model=MODEL,
@@ -57,6 +60,12 @@ response = client.chat.completions.create(
     ],
 )
 
+end_time = time.perf_counter()
+duration_ms = (end_time - start_time) * 1000
 
 console.print(response)
-console.print(f"Number of experts: {len(response.result.experts)}")
+
+if response.result:
+    console.print(f"Number of experts: {len(response.result.experts)}")
+
+console.print(f"[bold green]API call duration: {duration_ms:.2f} ms[/bold green]")
