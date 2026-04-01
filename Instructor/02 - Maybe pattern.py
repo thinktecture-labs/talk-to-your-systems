@@ -11,7 +11,7 @@ import instructor
 console = Console()
 
 api_url = "https://api.cerebras.ai/v1" #"https://openai.inference.de-txl.ionos.com/v1"
-MODEL = "llama-3.3-70b" #"meta-llama/Llama-3.3-70B-Instruct"
+MODEL = "gpt-oss-120b"
 
 client = instructor.from_openai(OpenAI(base_url=api_url),
                                 mode=instructor.Mode.JSON)

@@ -4,3 +4,4 @@ instructor
 rich
 llama-cpp-python
 huggingface-hub
+cerebras-cloud-sdk
